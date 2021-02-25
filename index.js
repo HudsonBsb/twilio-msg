@@ -16,8 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/received', (req, res) => {
-    console.log('received message => ', req.parser.onIncoming());
-    const VoiceResponse = require('twilio').twiml.VoiceResponse;
+    console.log('received message => ', req);
     res.send({ message: 'received' })
 })
 
