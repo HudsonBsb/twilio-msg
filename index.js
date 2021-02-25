@@ -4,8 +4,6 @@ const { port, accountSid, authToken } = require('./src/config');
 const client = require('twilio')(accountSid, authToken);
 
 app.get('/', (req, res) => {
-    const addrs = client.accounts;
-    console.log('twilio addrs => ', addrs);
     client.messages
         .create({
             body: 'Teste de envio de mensagem node.',
