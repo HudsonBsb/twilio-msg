@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/received', (req, res) => {
-    console.log('received message => ', addrs);
+    console.log('received message => ', req);
 })
 
 app.get('/status', (req, res) => {
