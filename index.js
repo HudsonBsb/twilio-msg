@@ -17,6 +17,14 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/received', (req, res) => {
+    console.log('received message => ', addrs);
+})
+
+app.get('/status', (req, res) => {
+    console.log('received message status is changed => ', req);
+})
+
 app.listen(port, () => {
     console.log(`rodando em http://localhost:${port}`)
 })
