@@ -16,12 +16,12 @@ app.get('/', (req, res) => {
 })
 
 app.post('/received', (req, res) => {
-    console.log('received message => ', req.body);
+    console.log('received message => ', req);
     res.send({ message: 'received' })
 })
 
 app.post('/status', (req, res) => {
-    console.log('received message status is changed => ', req.body);
+    console.log('received message status is changed => ', req);
     res.send({ message: 'received status' })
 })
 
