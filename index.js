@@ -15,12 +15,14 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get('/received', (req, res) => {
-    console.log('received message => ', req);
+app.post('/received', (req, res) => {
+    console.log('received message => ', req.body);
+    res.send({ message: 'received' })
 })
 
-app.get('/status', (req, res) => {
-    console.log('received message status is changed => ', req);
+app.post('/status', (req, res) => {
+    console.log('received message status is changed => ', req.body);
+    res.send({ message: 'received status' })
 })
 
 app.listen(port, () => {
