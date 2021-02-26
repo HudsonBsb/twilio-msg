@@ -21,6 +21,9 @@ app.get('/', (req, res) => {
 app.post('/received', (req, res) => {
     const { body } = req;
     console.log('body received message => ', body);
+    client.messages.get(body.MessageSid)
+        .fetch()
+        .then(msg => console.log('Messaaaaaaage => ', msg));
     res.send({ message: 'received' })
 })
 
