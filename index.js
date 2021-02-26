@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const fs = require('fs');
 const { port, accountSid, authToken } = require('./src/config');
 const client = require('twilio')(accountSid, authToken);
 
@@ -16,7 +17,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/received', (req, res) => {
-    console.log('received message => ', req);
+    const { body } = req;
+    console.log('body received message => ', body);
+    await fs.writeFileSync('msg-received.json');
     res.send({ message: 'received' })
 })
 
