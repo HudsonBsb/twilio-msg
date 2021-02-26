@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express();
-const router = express.Router();
 const { port, accountSid, authToken } = require('./src/config');
 const client = require('twilio')(accountSid, authToken);
 
 app.use([express.json(), express.urlencoded({ extended: true })])
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
     client.messages
         .create({
             body: 'Teste de envio de mensagem node.',
@@ -19,19 +18,18 @@ router.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-router.post('/received', (req, res) => {
+app.post('/received', (req, res) => {
     const { body } = req;
     console.log('body received message => ', body);
-    console.log('req received message => ', req);
     res.send({ message: 'received' })
 })
 
-router.post('/status', (req, res) => {
+app.post('/status', (req, res) => {
     const { body } = req;
     console.log('body received message status is changed => ', body);
     res.send({ message: 'received status' })
 })
-app.use(router);
+
 app.listen(port, () => {
     console.log(`rodando em http://localhost:${port}`)
 })
