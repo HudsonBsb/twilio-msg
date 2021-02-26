@@ -4,6 +4,10 @@ const router = express.Router();
 const fs = require('fs');
 const { port, accountSid, authToken } = require('./src/config');
 const client = require('twilio')(accountSid, authToken);
+const { MessagingResponse } = require('twilio').twiml;
+const goodBoyUrl = 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?'
+  + 'ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
+
 
 client.chat.services('IS4940e4b5a0934dc8983df2df549d3acc')
     .update({
@@ -26,6 +30,16 @@ router.get('/', (req, res) => {
 
 router.post('/received', (req, res) => {
     const { body } = req;
+
+    let message;
+
+    if (body.NumMedia > 0) {
+        message = new MessagingResponse().message("Thanks for the image! Here's one for you!");
+        message.media(goodBoyUrl);
+    } else {
+        message = new MessagingResponse().message('Send us an image!');
+    }
+    console.log('message received message => ', message);
     console.log('body received message => ', body);
     // console.log('req received message => ', req);
     res.send({ message: 'received' })
