@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 app.post('/received', (req, res) => {
     const { body } = req;
     console.log('body received message => ', body);
+    console.log('req received message => ', req);
     res.send({ message: 'received' })
 })
 
