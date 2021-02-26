@@ -8,7 +8,7 @@ client.chat.services('IS4940e4b5a0934dc8983df2df549d3acc')
     .update({
         webhookFilters: ['onMessageSent', 'onMessageSend', 'onMessageUpdate', 'onMessageUpdated', 'onMessageRemove', 'onMessageRemoved', 'onChannelAdd', 'onChannelAdded', 'onChannelDestroy', 'onChannelDestroyed', 'onChannelUpdate', 'onChannelUpdated', 'onMemberAdd', 'onMemberAdded', 'onMemberRemove', 'onMemberRemoved', 'onUserUpdate', 'onUserUpdated']
     })
-    .then(service => console.log(service.friendlyName));
+    .then(service => console.log('service return console => ', service.friendlyName));
 
 app.get('/', (req, res) => {
     client.messages
@@ -25,12 +25,13 @@ app.get('/', (req, res) => {
 app.post('/received', (req, res) => {
     const { body } = req;
     console.log('body received message => ', body);
-    console.log('req received message => ', req);
+    // console.log('req received message => ', req);
     res.send({ message: 'received' })
 })
 
 app.post('/status', (req, res) => {
-    console.log('received message status is changed => ', req);
+    const { body } = req;
+    console.log('body received message status is changed => ', body);
     res.send({ message: 'received status' })
 })
 
