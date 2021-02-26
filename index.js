@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 app.post('/received', (req, res) => {
     const { body } = req;
     console.log('body received message => ', body);
-    fs.writeFileSync('msg-received.json', req);
+    console.log('req received message => ', req);
     res.send({ message: 'received' })
 })
 
