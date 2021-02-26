@@ -4,6 +4,12 @@ const fs = require('fs');
 const { port, accountSid, authToken } = require('./src/config');
 const client = require('twilio')(accountSid, authToken);
 
+client.chat.services('IS4940e4b5a0934dc8983df2df549d3acc')
+    .update({
+        webhookFilters: ['onMessageSent', 'onMessageSend', 'onMessageUpdate', 'onMessageUpdated', 'onMessageRemove', 'onMessageRemoved', 'onChannelAdd', 'onChannelAdded', 'onChannelDestroy', 'onChannelDestroyed', 'onChannelUpdate', 'onChannelUpdated', 'onMemberAdd', 'onMemberAdded', 'onMemberRemove', 'onMemberRemoved', 'onUserUpdate', 'onUserUpdated']
+    })
+    .then(service => console.log(service.friendlyName));
+
 app.get('/', (req, res) => {
     client.messages
         .create({
